@@ -11,7 +11,7 @@ from django.forms.models import modelformset_factory
 
 from foialist.models import *
 from foialist.helpers import *
-from foialist.secret import *
+from django.conf import settings
 
 from scribd import *
 import scribd
@@ -58,8 +58,8 @@ def f(request):
         
         if file_formset.is_valid():
             
-            scribd.config(SCRIBD_KEY, SCRIBD_SEC)
-            scribd_user = scribd.login(SCRIBD_USER, SCRIBD_PASS)
+            scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
+            scribd_user = scribd.login(settings.SCRIBD_USER, settings.SCRIBD_PASS)
             
          #   z = zipfile.ZipFile(archname, 'a')
             

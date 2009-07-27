@@ -1,8 +1,0 @@
- 7a4hwr7i0rb2u6ciwzqtd
-Your API key is private - guard it as you would a password
-
-Your API secret:
-sec-66m035qf6y6nz0e4fk9e3unan6
-
-Your publisher ID:
-pub-59347429434814011690
