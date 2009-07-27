@@ -1,0 +1,4 @@
+-e svn+http://code.djangoproject.com/svn/django/trunk#egg=Django
+django-extensions
+markdown
+-e svn+http://python-scribd.googlecode.com/svn/trunk/#egg=scribd
