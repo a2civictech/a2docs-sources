@@ -1,0 +1,6 @@
+syntax: glob
+settings_local.py
+*.pyc
+*.orig
+*.db
+.DS_Store

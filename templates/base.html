@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<style type="text/css" media="screen">
+			@import url(/templates/css/base.css);
+			{% block css %}{% endblock %}
+		</style>
+		
+		<script src="/templates/js/jquery-1.3.2.min.js"></script>
+		<script src="/templates/js/jquery-ui-1.7.2.custom.min.js"></script>
+		<script src="/templates/js/jquery.autogrow.js"></script>
+		<script src="/templates/js/jquery.autocomplete.js"></script>
+		
+		
+		<script type="text/javascript">
+			jQuery(function() {
+				{% block jquery %}
+				{% endblock %}
+            });
+            	
+		</script>
+		
+		{% block head %}
+		{% endblock %}
+		
+	</head>
+	<body>
+		<h1 id="head"><a href="/"><span>Ann Arbor Area</span> Government Document Repository</a></h1>
+			
+		<div id="page">
+			<ul id="nav">
+				{% block nav-home %}<li id="home"><a href="/">Home</a></li>{% endblock %}
+				{% block nav-add %}<li><a href="/add" class="selected">Submit a document</a></li>{% endblock %}
+				
+				{% block nav-browse-submitter %}<li><a href="/submitter" class="selected">Browse by submitter</a></li>{% endblock %}
+				
+				{% block nav-browse-origin %}<li><a href="/origin" class="selected">Browse by origin</a></li>{% endblock %}
+				
+				{% block nav-about %}<li><a href="/about">About</a></li>{% endblock %}
+
+			</ul>
+		
+			<div id="container">
+			
+				{% block content %}{% endblock %}			
+			
+			
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	</body>
+</html>

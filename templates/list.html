@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load hash %}
+
+{% block nav %}
+<li id="home" class="selected"><a href="/">Home</a></li>
+<li><a href="/add">Submit a document</a></li>
+<li><a href="/about">About</a></li>
+{% endblock %}
+
+
+
+{% block content %}
+
+{{header}}
+
+<h1>Documents from {{origin}}</h1>
+
+<table class="rlist" cellspacing="0">
+	<thead>
+		<tr>
+			<th>Recent documents</th>
+			<th>Added</th>
+			<th>Files</th>
+			<th>From</th>
+			<th>By</th>
+			
+		</tr>
+	</thead>
+	
+	<tbody>
+		
+		{% for entry in entries %}
+		<tr>
+			<td class="title"><a href="/doc/{{ entry.id }}">{{ entry.title }}</a></td>
+			<td class="date">{{ entry.date_posted|date:"F j, Y" }}</td>
+			<td class="attachments">{{ counts|hash:entry.title}}</td>
+			<td class="entity"><a href="/origin/{{entry.entity.id}}">{{ entry.entity.name }}</td>
+			<td class="poster"><a href="/submitter/{{entry.poster_slug}}">{{ entry.poster }}</a></td>
+		</tr>
+		{% endfor %}
+		
+				
+		
+	</tbody>
+
+</table>
+{% endblock %}

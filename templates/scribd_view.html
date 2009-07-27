@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load markup %}
+{% block nav %}
+<li id="home"><a href="/">Home</a></li>
+<li><a href="/add">Submit a document</a></li>
+<li><a href="/about">About</a></li>
+{% endblock %}
+
+{% block head %}
+<script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>
+{% endblock %}
+
+{% block content %}
+	<h1>{{f.name}} from <a href="/doc/{{e.id}}">{{e.title}}</a></h1>
+	
+	<p><a href="/{{f.theFile}}">Download this document</a> ({{f.size}})</p>
+	<div id='embedded_flash'><a href="http://www.scribd.com"></a></div>
+
+	<script type="text/javascript">
+	var scribd_doc = scribd.Document.getDoc( {{f.scribd_id}}, '{{f.scribd_ak}}' );
+
+	var oniPaperReady = function(e){
+	// scribd_doc.api.setPage(3);
+	}
+
+	scribd_doc.addParam( 'jsapi_version', 1 );
+	scribd_doc.addEventListener( 'iPaperReady', oniPaperReady );
+	scribd_doc.write( 'embedded_flash' );
+	</script>
+
+{% endblock %}

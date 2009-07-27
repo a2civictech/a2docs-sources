@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{header}}
+
+<ul>		
+		{% for entry in entries %}
+		<li>
+			<a href="/origin/{{ entry.slug }}">
+				{{ entry.name }} 
+			</a>
+		</li>
+		{% endfor %}
+
+</ul>		
+{% endblock %}
