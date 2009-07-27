@@ -47,8 +47,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'foialist',
     'django.contrib.markup',
+    'django_extensions',
+    'foialist',
 )
 
 try:

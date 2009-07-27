@@ -3,4 +3,6 @@ settings_local.py
 *.pyc
 *.orig
 *.db
+*.sqlite
 .DS_Store
+assets/files/200?/*
