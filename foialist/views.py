@@ -40,19 +40,10 @@ def count_files(entries):
     # HOMEPAGE
     # ======================
 def home(request):
-    entries = Entry.objects.filter(show=True).order_by("-date_posted")
-    
+    entries = Entry.objects.filter(show=True)
     counts = count_files(entries)
     return render_to_response('list.html', {'entries': entries, 'counts': counts})
 
-
-def thanks(request):
-    return render_to_response('thanks.html')
-    
-    
-def about(request):
-    return render_to_response('about.html')
-    
     
     # DISPLAY DOCS by ORIGIN
     # ======================
@@ -70,7 +61,7 @@ def by_origin(request, slug):
     # returns all documents from that source.
     
     entity = Entity.objects.get(slug=slug)
-    entries = Entry.objects.filter(show=True, entity=entity).order_by("-date_posted")
+    entries = Entry.objects.filter(show=True, entity=entity)
     origin = entity.name
     
     headline = Entity.objects.get(id=entity.id).name
@@ -102,7 +93,7 @@ def by_poster(request, slug):
     # takes a submitter slug
     # returns all documents from that submitter.
 
-    entries = Entry.objects.filter(show=True, poster_slug = slug).order_by("-date_posted")
+    entries = Entry.objects.filter(show=True, poster_slug = slug)
     origin = entries[0].poster
     
     counts = count_files(entries)
@@ -111,7 +102,7 @@ def by_poster(request, slug):
     
     
     # DISPLAY A PAGE BY ID
-    # ======================    
+    # ======================
 def page_by_id(request, pageid):
     try:
         pageid = int(pageid)
@@ -135,12 +126,10 @@ def scribd_view(request, eid, did):
     did = file ID
     eid = entry id 
     '''
-    
     f = File.objects.get(id=did)
     
     entry = Entry.objects.get(id=eid)
     files = File.objects.filter(belongs_to = entry)
-     
     
     return render_to_response('scribd_view.html', {
         'e': entry, 

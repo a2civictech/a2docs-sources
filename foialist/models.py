@@ -48,6 +48,7 @@ class Entry(models.Model):
     show = models.BooleanField()
     
     class Meta:
+        ordering = ('-date_posted',)
         verbose_name_plural = 'entries'
     
     def __unicode__(self):
