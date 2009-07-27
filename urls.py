@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import *
-from foia.views import *
+from views import *
 from foialist.views import * 
 from django.contrib import admin
+from django.conf import settings
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -37,3 +39,9 @@ urlpatterns = patterns('',
         # underscores, in case of a hyphenated last name
         # maybe there's mechanism for this already.
 )
+
+if settings.LOCAL_DEVELOPMENT:
+    urlpatterns += patterns("django.views",
+        url(r"^assets/(?P<path>.*)$", 'static.serve', {
+            "document_root": settings.MEDIA_ROOT,})
+    )

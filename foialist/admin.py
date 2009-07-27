@@ -1,5 +1,5 @@
 from django.contrib import admin
-from foia.foialist.models import *
+from foialist.models import *
 
 admin.site.register(File)
 admin.site.register(Comment)
