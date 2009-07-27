@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.conf import settings
 
 from django import forms
 from django.forms import ModelForm
@@ -145,7 +146,7 @@ def scribd_view(request, eid, did):
         'e': entry, 
         'f': f,
         'files': files,
-        'key': SCRIBD_KEY
+        'key': settings.SCRIBD_KEY
     })
     
     
