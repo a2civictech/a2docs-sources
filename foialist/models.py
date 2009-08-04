@@ -6,6 +6,9 @@ class Entity(models.Model):
     slug = models.SlugField()
     
     class Meta:
+        ordering = ('name',)
+    
+    class Meta:
         verbose_name_plural = 'entities'
     
     def __unicode__(self):
@@ -15,6 +18,9 @@ class Entity(models.Model):
 class Reason(models.Model):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
+    
+    class Meta:
+        ordering = ('name',)
     
     def __unicode__(self):
         return self.name
