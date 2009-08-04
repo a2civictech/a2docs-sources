@@ -46,13 +46,12 @@ def add(request):
                                        settings.SCRIBD_PASS)
             
             for f in file_formset.save(commit=False):
+                f.name = f.theFile.name.split("/")[-1]
+                f.size = convert_bytes(f.theFile.size)
                 f.belongs_to = entry
-                f.name = ""
-                f.size = ""
                 f.scribd_link = ""
                 f.scribd_id = ""
                 f.scribd_ak = ""
-                f.save()  
                 
                 # attempt to upload it to scribd
                 try:
@@ -61,10 +60,8 @@ def add(request):
                     f.scribd_link = scribd_doc.get_scribd_url()
                     f.scribd_ak = scribd_doc.access_key
                 except scribd.ResponseError:
-                    pass
-                
-                f.size = convert_bytes(f.theFile.size)
-                f.name = f.theFile.name.split("/")[-1]
+                    pass # TODO handle this in some reasonable way
+
                 f.save()
     
     context['fileform'] = file_formset
