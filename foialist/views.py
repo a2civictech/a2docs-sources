@@ -1,18 +1,17 @@
-from django.shortcuts import render_to_response
-from django.template.loader import get_template
-from django.template import Context
-from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.conf import settings
-
-from django import forms
-from django.forms import ModelForm
 from django.forms.models import modelformset_factory
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import Context
+from django.template.loader import get_template
 
-from foialist.models import * 
-from foialist.add import *
+from foialist.forms import * 
 from foialist.helpers import *
+from foialist.models import * 
 
 import datetime
+from scribd import *
+import scribd
 
 '''
 TODO
@@ -23,12 +22,56 @@ TODO
 
 '''
 
-class CommentForm(ModelForm):
-    poster = forms.CharField()
+def add(request):
+    context = {}
+    entry_form = EntryForm(prefix='entries')
+    file_forms_excludes = ('belongs_to', 'scribd_link', 'scribd_ak', 'size', 
+                           'scribd_id', 'name')
+    FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=2,
+                                        exclude=file_forms_excludes,)
+    file_formset = FileFormSetFactory(prefix='files')
     
-    class Meta:
-        model = Comment
-        
+    if request.method == 'POST':
+        entry_form = EntryForm(request.POST, request.FILES, prefix='entries')
+        file_formset = FileFormSetFactory(request.POST, request.FILES, 
+                                          prefix='files')
+    
+        if entry_form.is_valid() and file_formset.is_valid():
+            # saving the entry form is easy
+            entry = entry_form.save()
+            
+            # saving the files - more involved
+            scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
+            scribd_user = scribd.login(settings.SCRIBD_USER, 
+                                       settings.SCRIBD_PASS)
+            
+            for f in file_formset.save(commit=False):
+                f.belongs_to = entry
+                f.name = ""
+                f.size = ""
+                f.scribd_link = ""
+                f.scribd_id = ""
+                f.scribd_ak = ""
+                f.save()  
+                
+                # attempt to upload it to scribd
+                try:
+                    scribd_doc = scribd_user.upload(f.theFile)
+                    f.scribd_id = str(scribd_doc._get_id())
+                    f.scribd_link = scribd_doc.get_scribd_url()
+                    f.scribd_ak = scribd_doc.access_key
+                except scribd.ResponseError:
+                    pass
+                
+                f.size = convert_bytes(f.theFile.size)
+                f.name = f.theFile.name.split("/")[-1]
+                f.save()
+    
+    context['fileform'] = file_formset
+    context['entryform'] = entry_form
+    context['entities'] = entities()
+    return render_to_response('add.html', context)
+
 def count_files(entries):
     counts = {}
     for entry in entries:
@@ -137,5 +180,3 @@ def scribd_view(request, eid, did):
         'files': files,
         'key': settings.SCRIBD_KEY
     })
-    
-    

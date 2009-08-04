@@ -10,14 +10,9 @@
 	<h1>Submit a thing</h1>
 	<form enctype="multipart/form-data" action="" method="post">
 		
-		{{ entryform.management_form }} 
+		{{ entryform }} 
 		{{ fileform.management_form }} 
 		
-		
-		{% for form in entryform.forms %}
-			{{ form.as_p }}
-		{% endfor %}
-				
 		{% for form in fileform.forms %}
 			{{ form.as_p }}
 		{% endfor %}

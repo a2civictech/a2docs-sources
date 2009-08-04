@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     ('^$', home),
     ('^add/$', add),
 
-    ('^file/$', f),
+    # ('^file/$', f),
     
     (r'^doc/(\d+)/$', page_by_id),
     (r'^doc/(?P<eid>\d+)/view/(?P<did>\d+)/$', scribd_view),
