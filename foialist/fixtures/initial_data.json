@@ -1,0 +1,43 @@
+
+[
+    {
+        "pk": 1,
+         "model": "foialist.entity",
+         "fields": 
+        {
+            "name": "Demo entity",
+             "slug": "demo-entity"
+        }
+    },
+     
+    {
+        "pk": 1,
+         "model": "foialist.reason",
+         "fields": 
+        {
+            "name": "Foo",
+             "slug": "foo"
+        }
+    },
+     
+    {
+        "pk": 2,
+         "model": "foialist.reason",
+         "fields": 
+        {
+            "name": "Foo in part",
+             "slug": "foo-part"
+        }
+    },
+     
+    {
+        "pk": 3,
+         "model": "foialist.reason",
+         "fields": 
+        {
+            "name": "Zapow",
+             "slug": "zapow"
+        }
+    }
+]
+
