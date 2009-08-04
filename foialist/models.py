@@ -45,7 +45,7 @@ class Entry(models.Model):
     poster = models.CharField("Your name", max_length=100)
     poster_slug = models.SlugField()
     email  = models.EmailField("Your email")
-    show = models.BooleanField()
+    show = models.BooleanField(default=True)
     
     class Meta:
         ordering = ('-date_posted',)
@@ -57,12 +57,12 @@ class Entry(models.Model):
     
 class File(models.Model):
     theFile = models.FileField("File", upload_to='files/%Y/%m/%d')
-    belongs_to = models.ForeignKey(Entry)
-    size = models.CharField(max_length=100)
-    name = models.CharField(max_length=150)
-    scribd_id = models.CharField(max_length=100)
-    scribd_link = models.CharField(max_length=256)
-    scribd_ak = models.CharField(max_length=256)
+    entry = models.ForeignKey(Entry)
+    size = models.CharField(blank=True, max_length=100)
+    name = models.CharField(blank=True, max_length=150)
+    scribd_id = models.CharField(blank=True, max_length=100)
+    scribd_link = models.CharField(blank=True, max_length=256)
+    scribd_ak = models.CharField(blank=True, max_length=256)
 
 
 class Comment(models.Model):
@@ -72,7 +72,7 @@ class Comment(models.Model):
     body = models.TextField()
     visible = models.BooleanField()
     
-    belongs_to = models.ForeignKey(Entry)
+    entry = models.ForeignKey(Entry)
     
     def __unicode__(self):
         return u'%s -- %s: %s' (self.poster, self.date_posted, self.body)

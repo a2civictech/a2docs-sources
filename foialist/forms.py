@@ -6,7 +6,7 @@ from foialist.models import *
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
-        exclude = ('belongs_to', 'size')
+        exclude = ('entry', 'size')
     
     
 class EntryForm(forms.ModelForm):

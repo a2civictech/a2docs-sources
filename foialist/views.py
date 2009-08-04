@@ -25,7 +25,7 @@ TODO
 def add(request):
     context = {}
     entry_form = EntryForm(prefix='entries')
-    file_forms_excludes = ('belongs_to', 'scribd_link', 'scribd_ak', 'size', 
+    file_forms_excludes = ('entry', 'scribd_link', 'scribd_ak', 'size', 
                            'scribd_id', 'name')
     FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=2,
                                         exclude=file_forms_excludes,)
@@ -48,7 +48,7 @@ def add(request):
             for f in file_formset.save(commit=False):
                 f.name = f.theFile.name.split("/")[-1]
                 f.size = convert_bytes(f.theFile.size)
-                f.belongs_to = entry
+                f.entry = entry
                 f.scribd_link = ""
                 f.scribd_id = ""
                 f.scribd_ak = ""
@@ -72,7 +72,7 @@ def add(request):
 def count_files(entries):
     counts = {}
     for entry in entries:
-        count = File.objects.filter(belongs_to=entry).count()
+        count = File.objects.filter(entry=entry).count()
         counts[entry.title] = count
     return counts
     
@@ -154,7 +154,7 @@ def page_by_id(request, pageid):
     except Entry.DoesNotExist:
         return render_to_response('404.html', { 'message' : 'The entry could not be found.'})
        
-    files = File.objects.filter(belongs_to = entry)
+    files = File.objects.filter(entry = entry)
     file_info = []
     for f in files:
         file_info.append(f)
@@ -169,7 +169,7 @@ def scribd_view(request, eid, did):
     f = File.objects.get(id=did)
     
     entry = Entry.objects.get(id=eid)
-    files = File.objects.filter(belongs_to = entry)
+    files = File.objects.filter(entry=entry)
     
     return render_to_response('scribd_view.html', {
         'e': entry, 
