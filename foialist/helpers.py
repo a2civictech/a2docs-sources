@@ -34,3 +34,11 @@ def convert_bytes(bytes):
         bytes = round(bytes, 0)
         size = '%.2f bytes' % bytes
     return size
+
+def fake_slug(string):
+    '''
+    returns a fake slug for URL handling
+    '''
+    string = string.replace(" ", "_")
+    string = string.replace("/", "-")
+    return string

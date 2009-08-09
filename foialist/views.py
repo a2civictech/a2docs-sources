@@ -4,6 +4,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context
 from django.template.loader import get_template
+from django.template.defaultfilters import slugify
 
 from foialist.forms import * 
 from foialist.helpers import *
@@ -39,6 +40,7 @@ def add(request):
         if entry_form.is_valid() and file_formset.is_valid():
             entry = entry_form.save(commit=False)
             
+            entry.poster_slug = slugify(entry.poster)
             '''
             The name of the entity has has been sent 
             as a string. We need to use an actual  
@@ -60,9 +62,9 @@ def add(request):
             entry.save()
             
             # saving the files - more involved
-       #     scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
-       #    scribd_user = scribd.login(settings.SCRIBD_USER, 
-       #                                settings.SCRIBD_PASS)
+            scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
+            scribd_user = scribd.login(settings.SCRIBD_USER, 
+                                       settings.SCRIBD_PASS)
             
             for f in file_formset.save(commit=False):
                 f.name = f.theFile.name.split("/")[-1]
@@ -73,13 +75,13 @@ def add(request):
                 f.scribd_ak = ""
                 
                 # attempt to upload it to scribd
-            #    try:
-            #        scribd_doc = scribd_user.upload(f.theFile)
-            #        f.scribd_id = str(scribd_doc._get_id())
-            #        f.scribd_link = scribd_doc.get_scribd_url()
-            #        f.scribd_ak = scribd_doc.access_key
-            #    except scribd.ResponseError:
-            #        pass # TODO handle this in some reasonable way
+                try:
+                    scribd_doc = scribd_user.upload(f.theFile)
+                    f.scribd_id = str(scribd_doc._get_id())
+                    f.scribd_link = scribd_doc.get_scribd_url()
+                    f.scribd_ak = scribd_doc.access_key
+                except scribd.ResponseError:
+                    pass # TODO handle this in some reasonable way
 
                 f.save()
     
@@ -136,14 +138,20 @@ def by_origin(request, slug):
 def posters(request):
     # displays all submitters and the # of contributions.
 
-    posters = Entry.objects.filter(show=True)
-    distinct_posters = Entry.objects.values('poster', 'poster_slug').distinct()
+    posters = Entry.objects.filter(show=True).distinct()
+    distinct_posters = posters.values('poster', 'poster_slug')
+    
+    
+    slugs = []
     entries = []
     for distinct_poster in distinct_posters:
-        count = Entry.objects.filter(poster = distinct_poster['poster']).count()
+        
+        if distinct_poster['poster_slug'] not in slugs:
+            count = Entry.objects.filter(poster = distinct_poster['poster']).count()
 
-        entry = {'slug': distinct_poster['poster_slug'], 'name': distinct_poster['poster'], 'count': str(count)}
-        entries.append(entry)
+            entry = {'slug': distinct_poster['poster_slug'], 'name': distinct_poster['poster'], 'count': str(count)}
+            entries.append(entry)
+            slugs.append(distinct_poster['poster_slug'])
     
     return render_to_response('posters.html', {'entries': entries, })
     
