@@ -37,13 +37,32 @@ def add(request):
                                           prefix='files')
     
         if entry_form.is_valid() and file_formset.is_valid():
-            # saving the entry form is easy
-            entry = entry_form.save()
+            entry = entry_form.save(commit=False)
+            
+            '''
+            The name of the entity has has been sent 
+            as a string. We need to use an actual  
+            entity object.
+            '''
+            
+            # How do we sanitize this input?
+            entity_name = request.POST['entries-fake_entity']
+            try:
+                entity = Entity.objects.get(name=entity_name)
+                entry.entity = entity
+            except Entity.DoesNotExist:
+                entity = Entity(name=entity_name)
+                entity.slug = slugify(entity.name)
+                entity.save()
+                entry.entity = entity
+            
+            # Now we can actually save.
+            entry.save()
             
             # saving the files - more involved
-            scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
-            scribd_user = scribd.login(settings.SCRIBD_USER, 
-                                       settings.SCRIBD_PASS)
+       #     scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
+       #    scribd_user = scribd.login(settings.SCRIBD_USER, 
+       #                                settings.SCRIBD_PASS)
             
             for f in file_formset.save(commit=False):
                 f.name = f.theFile.name.split("/")[-1]
@@ -54,13 +73,13 @@ def add(request):
                 f.scribd_ak = ""
                 
                 # attempt to upload it to scribd
-                try:
-                    scribd_doc = scribd_user.upload(f.theFile)
-                    f.scribd_id = str(scribd_doc._get_id())
-                    f.scribd_link = scribd_doc.get_scribd_url()
-                    f.scribd_ak = scribd_doc.access_key
-                except scribd.ResponseError:
-                    pass # TODO handle this in some reasonable way
+            #    try:
+            #        scribd_doc = scribd_user.upload(f.theFile)
+            #        f.scribd_id = str(scribd_doc._get_id())
+            #        f.scribd_link = scribd_doc.get_scribd_url()
+            #        f.scribd_ak = scribd_doc.access_key
+            #    except scribd.ResponseError:
+            #        pass # TODO handle this in some reasonable way
 
                 f.save()
     

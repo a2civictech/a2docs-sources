@@ -28,11 +28,11 @@
 
 {% block jquery %}
 	
-	jQuery("#id_entries-0-date_filed").datepicker({ dateFormat: 'mm/dd/yy' });
-	jQuery("#id_entries-0-date_requested").datepicker({ dateFormat: 'mm/dd/yy' });
+	jQuery("#id_entries-date_filed").datepicker({ dateFormat: 'mm/dd/yy' });
+	jQuery("#id_entries-date_requested").datepicker({ dateFormat: 'mm/dd/yy' });
 	$('textarea').autogrow();
 
-	$("#id_entries-0-entity").autocompleteArray({{ entities|safe }}); 
+	$("#id_entries-fake_entity").autocompleteArray({{ entities|safe }}); 
 	
 	
 	// Hides and shows extra file entry forms

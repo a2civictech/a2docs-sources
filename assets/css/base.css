@@ -162,12 +162,13 @@ form {
 form input, form textarea {
     font-size: 1em;
 }
-form p {
+form li {
+    list-style:none;
     margin-bottom: 12px;
     overflow: hidden;
     clear: both;
 }
-form p span {
+form li span {
     display: block;
     margin-right: 110px;
     line-height: 1.1;
@@ -190,7 +191,7 @@ textarea {
     border: 1px solid #ccc;
     padding: 0px 4px 0px 4px;
 }
-p input {
+li input {
     border: 0px none;
     border-bottom: 1px dashed black;
 }
