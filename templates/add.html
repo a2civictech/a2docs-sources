@@ -17,6 +17,8 @@
 		{% endfor %}
 		<a id="add-another">add another file</a><br />
 		
+		<p id="more-than-ten">If you have large files (more than 50MB per file) or large collections of files (more than 10), this upload form may not work for you. Please contact us directly at <a href="mailto:info@arborwiki.org">info@arborwiki.org</a>, and we will work with you to coordinate a batch upload.</p>
+		
 		<input type="submit" value="Submit" />
 	</form>
 {% endblock %}
@@ -28,7 +30,7 @@
 	jQuery("#id_entries-date_requested").datepicker({ dateFormat: 'mm/dd/yy' });
 	$('textarea').autogrow();
 
-	$("#id_entries-fake_entity").autocompleteArray({{ entities|safe }}); 
+	$("#id_entries-govt_entity").autocompleteArray({{ entities|safe }}); 
 	
 	
 	// Hides and shows extra file entry forms
@@ -37,12 +39,13 @@
 	var suffix = "-theFile"
 	
 	var i = 1; // number of file forms shown
-	var num_forms = 2; // the number of file forms total. 
+	var num_forms = 10; // the number of file forms total. 
 	
 	$(document).ready(function() {
-		
+		jQuery("#more-than-ten").hide();
+
 		for(hide_i = i; hide_i <= num_forms; hide_i++) {
-			id_to_hide = "#" + prefix + i + suffix;
+			id_to_hide = "#" + prefix + hide_i + suffix;
 			jQuery(id_to_hide).parent().hide();	
 		}
 		
@@ -50,12 +53,13 @@
 		jQuery("#add-another").click(function() {
 			id_to_show = "#" + prefix + i + suffix;
 			jQuery(id_to_show).parent().show();
-			
+			i++;
 			// remove the link if you cannot add more files
 			// (  should make this friendlier -- a la 
 			//   'email large collections to ...' )
 			if(i == 10){
 				jQuery("#add-another").hide();
+				jQuery("#more-than-ten").show();
 			}		
    		});
  	});

@@ -19,7 +19,7 @@ def add(request):
     entry_form = EntryForm(prefix='entries')
     file_forms_excludes = ('entry', 'scribd_link', 'scribd_ak', 'size', 
                            'scribd_id', 'name')
-    FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=2,
+    FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=8,
                                         exclude=file_forms_excludes,)
     file_formset = FileFormSetFactory(prefix='files')
     

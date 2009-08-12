@@ -10,7 +10,7 @@ class FileForm(forms.ModelForm):
     
     
 class EntryForm(forms.ModelForm):
-    govt_entity = forms.CharField("Gov't. entity")
+    govt_entity = forms.CharField(label="Gov't. entity")
     
     class Meta:
         model = Entry
