@@ -184,7 +184,14 @@ def page_by_id(request, pageid):
     files = File.objects.filter(entry = entry)
     file_info = []
     for f in files:
-        file_info.append(f)
+        
+        file_type = "unknown"
+        file_ext = f.name.split(".")[-1]
+        if str(file_ext) is "png" or "jpg" or "gif":
+            file_type = "image"
+            
+        file_dict = { 'file': f, 'type': file_type }
+        file_info.append(file_dict)
                   
     return render_to_response('page_by_id.html', {'e': entry, 'files': file_info})
     

@@ -13,7 +13,7 @@ caption, th, td {
 }
 
 body {
-    font-family: Cambria, Times, serif;
+    font-family: Baskerville, Cambria, Times, serif;
     background: #eee;
     font-size: 1.1em;
 }
@@ -82,10 +82,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: .25em ;
     font-size: 1.5em;
 }
-#container h2 {
+#container h2, #container h3 {
     margin-top: .75em;
+    color:#360;
 }
-
+#container p { margin-bottom:1em; }
+    #container .flatpage p { margin-right:200px;}
 
 h1#head {
     font-size: 36px;
