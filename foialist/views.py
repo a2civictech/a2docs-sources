@@ -30,7 +30,6 @@ def add(request):
     
         if entry_form.is_valid() and file_formset.is_valid():
             entry = entry_form.save(commit=False)
-            
             entry.poster_slug = slugify(entry.poster)
             '''
             The name of the entity has has been sent 
@@ -75,6 +74,8 @@ def add(request):
                     pass # TODO handle this in some reasonable way
 
                 f.save()
+            
+            return HttpResponseRedirect('/doc/' + str(entry.id)) 
     
     context['fileform'] = file_formset
     context['entryform'] = entry_form
