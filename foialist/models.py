@@ -34,7 +34,7 @@ class Entry(models.Model):
     narrative = models.TextField(default=helptext)
     
     entity = models.ForeignKey(Entity)
-    reason = models.ForeignKey(Reason) 
+   # reason = models.ForeignKey(Reason) 
     
     date_filed = models.DateField("Date received", blank=True, null=True,
                                   help_text='(optional)') 
