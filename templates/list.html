@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 {% load hash %}
 
-{% block nav %}
-<li id="home" class="selected"><a href="/">Home</a></li>
-<li><a href="/add">Submit a document</a></li>
-<li><a href="/about">About</a></li>
-{% endblock %}
-
-
+{% block title %}Documents from {{origin}}{% endblock %}
 
 {% block content %}
 

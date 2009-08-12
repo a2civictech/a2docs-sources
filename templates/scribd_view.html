@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
-{% block nav %}
-<li id="home"><a href="/">Home</a></li>
-<li><a href="/add">Submit a document</a></li>
-<li><a href="/about">About</a></li>
-{% endblock %}
+
+{% block title %}{{f.name}} from {{e.title}}{% endblock %}
 
 {% block head %}
 <script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>

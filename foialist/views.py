@@ -14,15 +14,6 @@ import datetime
 from scribd import *
 import scribd
 
-'''
-TODO
-
-- Implement actual uploading
-- Write about text
-- Replace owl
-
-'''
-
 def add(request):
     context = {}
     entry_form = EntryForm(prefix='entries')

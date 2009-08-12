@@ -27,10 +27,7 @@ class Reason(models.Model):
     
     
 class Entry(models.Model):
-    helptext = """Add any relevant details about the documents. What are the 
-        documents about? Were there any problems or revelations? If your 
-        request was denied, what reason was given? What is the larger 
-        issue?"""
+    helptext = """Add any relevant details about the documents. What are the documents about? Were there any problems or revelations? If your request was denied, what reason was given? What is the larger issue?"""
     
     title = models.CharField(max_length=100)
     slug = models.SlugField()

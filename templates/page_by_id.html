@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
-{% block nav %}
-<li id="home"><a href="/">Home</a></li>
-<li><a href="/add">Submit a document</a></li>
-<li><a href="/about">About</a></li>
-{% endblock %}
+
+{% block title %}{{e.title}}{% endblock %}
 
 {% block content %}
 	<h1>{{e.title}}</h1>
