@@ -36,10 +36,10 @@ class Entry(models.Model):
     entity = models.ForeignKey(Entity)
    # reason = models.ForeignKey(Reason) 
     
-    date_filed = models.DateField("Date received", blank=True, null=True,
-                                  help_text='(optional)') 
     date_requested = models.DateField("Date requested", blank=True, null=True,
                                       help_text="(optional)")
+    date_filed = models.DateField("Date received", blank=True, null=True,
+                                  help_text='(optional)') 
     date_posted = models.DateTimeField(auto_now=True)
     
     # Q: should I do a separate table for submitters? I don't think so

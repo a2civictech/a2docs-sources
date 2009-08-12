@@ -39,7 +39,7 @@ def add(request):
             '''
             
             # How do we sanitize this input?
-            entity_name = request.POST['entries-fake_entity']
+            entity_name = request.POST['entries-govt_entity']
             try:
                 entity = Entity.objects.get(name=entity_name)
                 entry.entity = entity

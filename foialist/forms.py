@@ -10,12 +10,12 @@ class FileForm(forms.ModelForm):
     
     
 class EntryForm(forms.ModelForm):
-    fake_entity = forms.CharField()
+    govt_entity = forms.CharField("Gov't. entity")
     
     class Meta:
         model = Entry
-        exclude = ('slug', 'poster_slug', 'show', 'date_posted', 'entity')
-        fields = ('title', 'narrative', 'fake_entity', 'reason', 'date_requested', 'date_filed', 'poster', 'email')
+    #    exclude = ('slug', 'poster_slug', 'show', 'date_posted', 'entity')
+        fields = ('title', 'narrative', 'government_entity', 'date_requested', 'date_filed', 'poster', 'email')
 
 
 class CommentForm(forms.ModelForm):
