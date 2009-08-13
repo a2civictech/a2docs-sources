@@ -6,3 +6,4 @@ settings_local.py
 *.sqlite
 .DS_Store
 assets/files/200?/*
+django.wsgi
