@@ -95,7 +95,7 @@ def count_files(entries):
 def home(request):
     entries = Entry.objects.filter(show=True)
     counts = count_files(entries)
-    return render_to_response('list.html', {'entries': entries, 'counts': counts})
+    return render_to_response('home.html', {'entries': entries, 'counts': counts})
 
     
     # DISPLAY DOCS by ORIGIN

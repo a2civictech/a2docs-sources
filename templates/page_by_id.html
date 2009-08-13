@@ -12,6 +12,14 @@
 			<h2>Requested from</h2>
 			<a href="/origin/{{e.entity.id}}">{{e.entity.name}}</a>
 		</div>
+		<div class="requested">
+			<h2>On</h2>
+			{{e.date_requested}}
+		</div>
+		<div class="filled">
+			<h2>Recieved</h2>
+			{{e.date_filed}}
+		</div>
 		<div class="by">
 			<h2>By</h2>
 <!-- not going to link contributors for a while
@@ -19,22 +27,14 @@
 -->
 			{{e.poster}}
 		</div>
-		<div>
-			<div class="requested">
-				<h2>Requested</h2>
-				{{e.date_requested}}
-			</div>
-			<div class="filled">
-				<h2>Recieved</h2>
-				{{e.date_filed}}
-			</div>
-			<div class="posted">
-				<h2>Posted</h2>
-				{{e.date_posted}}
-			</div>
+		
+		<div class="posted">
+			<h2>Posted here</h2>
+			{{e.date_posted}}
 		</div>
 	</div>
 	
+	<div id="narrative">
 	{{e.narrative|markdown}}
 	
 	<h2>Files</h2>
@@ -44,4 +44,8 @@
 		<li><a href="/{{f.file.theFile}}">{{f.file.name}}</a> {{f.file.size}} (<a href="/doc/{{e.id}}/view/{{f.file.id}}">view online</a>)</li>
 	{% endfor %}
 	</ul>
+	
+	</div>
+	
+	
 {% endblock %}

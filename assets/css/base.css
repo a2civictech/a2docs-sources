@@ -82,10 +82,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: .25em ;
     font-size: 1.5em;
 }
-#container h2, #container h3 {
-    margin-top: .75em;
-    color:#360;
-}
+#container h2, #container h3 { margin-top: .75em; }
+    #container h3,
+    #container .info h2 { color:#360; }
+    #container .info h2 { margin-top:0; }
 #container p { margin-bottom:1em; }
     #container .flatpage p { margin-right:200px;}
 
@@ -144,18 +144,21 @@ td .filled {
 
 /* individual page */
 .info {
-    overflow: hidden;
-    clear: both;
+    margin-bottom:1.5em; 
+    width:243px;
+    float:right;
 }
 .info div {
     width: 220px;
     margin-right: 13px;
     float: left;
+    margin-bottom:.75em;
 }
 .info h2 {
     font-size: .9em;
     border-top: 1px solid #eee;
 }
+#narrative p { margin-right:234px; }
 
 
 /* submission page */
