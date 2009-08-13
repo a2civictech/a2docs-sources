@@ -14,11 +14,11 @@
 		</div>
 		<div class="requested">
 			<h2>On</h2>
-			{{e.date_requested}}
+			{{e.date_requested|date:"F j, Y"}}
 		</div>
 		<div class="filled">
 			<h2>Recieved</h2>
-			{{e.date_filed}}
+			{{e.date_filed|date:"F j, Y"}}
 		</div>
 		<div class="by">
 			<h2>By</h2>
@@ -30,7 +30,7 @@
 		
 		<div class="posted">
 			<h2>Posted here</h2>
-			{{e.date_posted}}
+			{{e.date_posted|date:"F j, Y" }}
 		</div>
 	</div>
 	
