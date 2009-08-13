@@ -143,14 +143,14 @@ td .filled {
 }
 
 /* individual page */
+#narrative, .info { margin-top:1em; }
 .info {
     margin-bottom:1.5em; 
-    width:243px;
+    width:220px;
     float:right;
 }
 .info div {
     width: 220px;
-    margin-right: 13px;
     float: left;
     margin-bottom:.75em;
 }
@@ -162,7 +162,8 @@ td .filled {
 
 
 /* submission page */
-form {
+#searchform {
+    margin-bottom:1em;
 }
 form input, form textarea {
     font-size: 1em;
@@ -197,9 +198,12 @@ textarea {
     border: 1px solid #ccc;
     padding: 0px 4px 0px 4px;
 }
-li input {
+li input, #searchform .input {
     border: 0px none;
     border-bottom: 1px dotted black;
+}
+#searchform .input {
+    width:250px; 
 }
 label {
     width: 130px;

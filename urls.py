@@ -25,13 +25,10 @@ urlpatterns = patterns('',
     (r'^submitter/$', posters),
     (r'^submitter/(?P<slug>[-\w]+)/$', by_poster),
     
+    ('^search/$', search),    
+    
     (r'^admin/(.*)', admin.site.root),
     # add urls for /year/month
-    # can I do one for people without adding another table?
-        # I think so -- just convert spaces to underscores for the URL in the view.
-        # then back again for the search string 
-        # underscores, in case of a hyphenated last name
-        # maybe there's mechanism for this already.
 )
 
 if settings.LOCAL_DEVELOPMENT:

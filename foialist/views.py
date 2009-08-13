@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import Context
 from django.template.loader import get_template
 from django.template.defaultfilters import slugify
+from django.db.models import *
 
 from foialist.forms import * 
 from foialist.helpers import *
@@ -13,6 +14,8 @@ from foialist.models import *
 import datetime
 from scribd import *
 import scribd
+from itertools import chain
+
 
 def add(request):
     context = {}
@@ -166,7 +169,7 @@ def page_by_id(request, pageid):
     try:
         pageid = int(pageid)
     except ValueError:
-        raise Http404
+        return render_to_response('404.html', { 'message' : 'The entry could not be found.'})
         
     try:
         entry = Entry.objects.get(id=pageid)
@@ -203,3 +206,38 @@ def scribd_view(request, eid, did):
         'files': files,
         'key': settings.SCRIBD_KEY
     })
+    
+def search(request):
+    if request.method == 'GET':
+        q = ""
+        try:
+            q = request.GET["q"]
+        except:
+            return HttpResponseRedirect('/search')
+        
+        results = Entry.objects.filter(
+                        Q(title__icontains=q) | 
+                        Q(narrative__icontains=q)).distinct()
+                        
+        
+        scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
+        scribd_user = scribd.login(settings.SCRIBD_USER, 
+                                   settings.SCRIBD_PASS)
+                        
+        scribd_docs = scribd.find(query=q, scope="user")
+        print scribd_docs
+        if scribd_docs:
+            for doc in scribd_docs:
+                scribd_id = str(doc._get_id())
+                f = File.objects.get(scribd_id = scribd_id)
+                more_results = Entry.objects.get(id=f.entry.id)
+            
+                results.append(more_results)
+           
+      #  results = results.distinct()
+        return render_to_response('results.html', { 'results': results, 'query': q})
+        
+    else:
+        #no query.
+        return render_to_response('search.html', { })
+    
