@@ -14,8 +14,8 @@ class EntryForm(forms.ModelForm):
     
     class Meta:
         model = Entry
-    #    exclude = ('slug', 'poster_slug', 'show', 'date_posted', 'entity')
-        fields = ('title', 'narrative', 'government_entity', 'date_requested', 'date_filed', 'poster', 'email')
+        fields = ('title', 'narrative', 'govt_entity', 'date_requested', 
+                  'date_filed', 'poster', 'email')
 
 
 class CommentForm(forms.ModelForm):
