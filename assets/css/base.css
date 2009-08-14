@@ -60,6 +60,7 @@ a:hover {
     color: #360;
     border-bottom: 1px solid #360;
 }
+a img, a.rsslink { border:0px none!important; }
 
 
 form input, form textarea, th, .status, h1 span, .ac_results, h2, #container h1, .errorlist li {

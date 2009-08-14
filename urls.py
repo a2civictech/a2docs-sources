@@ -4,6 +4,12 @@ from django.contrib import admin
 
 from foialist.views import * 
 
+from foialist.feeds import *
+
+feeds = {
+    'recent': RecentEntries,
+}
+
 
 admin.autodiscover()
 
@@ -26,6 +32,9 @@ urlpatterns = patterns('',
     (r'^submitter/(?P<slug>[-\w]+)/$', by_poster),
     
     ('^search/$', search),    
+    (r'^feeds/(?P<url>.*)/$', 
+        'django.contrib.syndication.views.feed', 
+        {'feed_dict': feeds}),
     
     (r'^admin/(.*)', admin.site.root),
     # add urls for /year/month

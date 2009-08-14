@@ -53,6 +53,9 @@ class Entry(models.Model):
     class Meta:
         ordering = ('-date_posted',)
         verbose_name_plural = 'entries'
+        
+    def get_absolute_url(self):
+        return "/id/%i/" % self.id
     
     def __unicode__(self):
         return self.title
