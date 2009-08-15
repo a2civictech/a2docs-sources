@@ -9,7 +9,7 @@
 	<div class="info">
 		<!-- should make this into a cool calendar -->
 		<div class="from">
-			<h2>Organization</h2>
+			<h2>Origin</h2>
 			<a href="/origin/{{e.entity.id}}">{{e.entity.name}}</a>
 		</div>
 		
@@ -28,12 +28,12 @@
 		{% endif %}
 		
 		<div class="by">
-			<h2>By</h2>
+			<h2>Posted by</h2>
 				<a href="/submitter/{{e.poster_slug}}">{{ e.poster }}</a>		
 		</div>
 		
 		<div class="posted">
-			<h2>Posted here</h2>
+			<h2>Date posted</h2>
 			{{e.date_posted|date:"F j, Y" }}
 		</div>
 	</div>

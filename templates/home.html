@@ -11,7 +11,7 @@
 <h1>Find documents</h1>
 
 <form action="/search/" method="get" id="searchform">
-	<input  class="input" type="text" name="q" id="q" />
+	<input  class="input" type="text" name="q" id="q" value="{{entries|first}}" onclick="this.value=''"/>
 	<input type="submit" value="Search" />
 </form>
 
