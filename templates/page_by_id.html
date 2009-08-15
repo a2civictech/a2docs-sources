@@ -9,17 +9,24 @@
 	<div class="info">
 		<!-- should make this into a cool calendar -->
 		<div class="from">
-			<h2>Requested from</h2>
+			<h2>Organization</h2>
 			<a href="/origin/{{e.entity.id}}">{{e.entity.name}}</a>
 		</div>
+		
+		{% if e.date_requested %}
 		<div class="requested">
-			<h2>On</h2>
+			<h2>Requested</h2>
 			{{e.date_requested|date:"F j, Y"}}
 		</div>
+		{% endif %}
+		
+		{% if e.date_filed %}
 		<div class="filled">
 			<h2>Recieved</h2>
 			{{e.date_filed|date:"F j, Y"}}
 		</div>
+		{% endif %}
+		
 		<div class="by">
 			<h2>By</h2>
 				<a href="/submitter/{{e.poster_slug}}">{{ e.poster }}</a>		

@@ -20,30 +20,29 @@ body {
 
 #page {
     line-height: 1.5;
-    padding: 20px 20px 20px 20px;
-    background: white;
     width: 920px;
     margin: 0px auto;
     clear: both;
     overflow: hidden;
 }
 #container {
-    width: 700px;
-    float: right;
+    width: 880px;
+    padding:20px;
+    background: white;
+    overflow:hidden;
 }
 #nav {
-    border-bottom: 0px none;
-    width: 200px;
-    overflow: hidden;
-    float: left;
-    font-size: 1.1em;
+    font-size: 1.1em;   
+    overflow:hidden;
+    margin:10px 0px 15px 20px; 
 }
 #nav li {
     text-indent: 0px;
     list-style: none;
+    margin-left:20px; 
+    display:inline; float:left;
 }
 #nav a {
-    display: block;
     border: 0px none;
 }
 #nav .selected a {
@@ -90,16 +89,19 @@ h1, h2, h3, h4, h5, h6 {
 #container p { margin-bottom:1em; }
     #container .flatpage p { margin-right:200px;}
 
-h1#head {
-    font-size: 36px;
-    font-weight: normal;
+#head { 
+    position:relative; 
     width: 960px;
     margin: 0px auto;
+}
+#head h1{
+    font-size: 36px;
+    font-weight: normal;
     padding-bottom: 10px;
     padding-left: 20px;
     margin-top: 10px;
 }
-h1#head a {
+#head h1 a {
     background: #eee url(/assets/img/ex.png) no-repeat 0px bottom;
     margin-right: 520px;
     padding-left: 230px;
@@ -108,10 +110,10 @@ h1#head a {
     border-bottom: 0px none;
     color: #360;
 }
-h1#head a:hover {
+#head h1 a:hover {
     color: #036;
 }
-h1#head span {
+#head h1 span {
     font-size: 15px;
 }
 
@@ -146,6 +148,7 @@ td .filled {
 /* individual page */
 #narrative, .info { margin-top:1em; }
 .info {
+    margin-top:-35px;
     margin-bottom:1.5em; 
     width:220px;
     float:right;

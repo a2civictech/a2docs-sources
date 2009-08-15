@@ -233,7 +233,9 @@ def search(request):
                 more_results = Entry.objects.get(id=f.entry.id)
             
                 results.append(more_results)
-           
+        
+        if results.count() == 0:
+            return render_to_response('results.html', { 'results': results, 'query': q})
       #  results = results.distinct()
         return render_to_response('results.html', { 'results': results, 'query': q})
         
