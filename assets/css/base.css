@@ -15,7 +15,7 @@ caption, th, td {
 body {
     font-family: Baskerville, Cambria, Times, serif;
     background: #eee;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 #page {
@@ -32,7 +32,7 @@ body {
     overflow:hidden;
 }
 #nav {
-    font-size: 1.1em;   
+    font-size: 1.2em;   
     overflow:hidden;
     margin:10px 0px 15px 20px; 
 }
@@ -159,7 +159,7 @@ tr.odd td {
     font-size: .9em;
     border-top: 1px solid #fff;
 }
-#narrative p { margin-right:234px; }
+#narrative p { margin-right:334px; }
 
 
 /* submission page */
