@@ -121,28 +121,22 @@ h1, h2, h3, h4, h5, h6 {
 .rlist {
     width: 100%;
 }
+.rlist td {
+    border-bottom:1px dotted #eee; 
+    padding-bottom:4px;
+    padding-top:4px;
+}
 td.title, td.date, td.attachments, td.poster {
-    border-right: 1.5em solid white;
+    padding-right: 1.5em solid white;
 }
-.status {
-    border-right: .75em solid white;
+td.title { 
+    padding-left:4px; 
 }
-.status span {
-    display: block;
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    text-indent: -1000px;
-    margin-top: 10px;
+tr.even td {
+    
 }
-td .filled {
-    background: #360;
-}
-.denied {
-    background: red;
-}
-.denied_part {
-    background: orange;
+tr.odd td {
+    background:#fafafa;
 }
 
 /* individual page */
