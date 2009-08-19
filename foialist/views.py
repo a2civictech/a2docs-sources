@@ -219,6 +219,7 @@ def search(request):
                         Q(title__icontains=q) | 
                         Q(narrative__icontains=q)).distinct()
                         
+        results = results.filter(show=True)
         
         scribd.config(settings.SCRIBD_KEY, settings.SCRIBD_SEC)
         scribd_user = scribd.login(settings.SCRIBD_USER, 
@@ -229,7 +230,7 @@ def search(request):
             for doc in scribd_docs:
                 scribd_id = str(doc._get_id())
                 f = File.objects.get(scribd_id = scribd_id)
-                more_results = Entry.objects.filter(id=f.entry.id)
+                more_results = Entry.objects.filter(id=f.entry.id, show=True)
             
                 results = list(results) + list(more_results)
         
