@@ -26,7 +26,6 @@ def add(request):
     FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=8,
                                         exclude=file_forms_excludes,)
     file_formset = FileFormSetFactory(prefix='files', queryset=File.objects.none())
-    print file_formset.initial
     
     if request.method == 'POST':
         entry_form = EntryForm(request.POST, request.FILES, prefix='entries')
