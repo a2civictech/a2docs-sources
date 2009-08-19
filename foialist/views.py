@@ -229,13 +229,13 @@ def search(request):
             for doc in scribd_docs:
                 scribd_id = str(doc._get_id())
                 f = File.objects.get(scribd_id = scribd_id)
-                more_results = Entry.objects.get(id=f.entry.id)
+                more_results = Entry.objects.filter(id=f.entry.id)
             
-                results = results | more_results
+                results = list(results) + list(more_results)
         
         
-        if results.count() == 0:
-            return render_to_response('results.html', { 'results': results, 'query': q})
+        #if results.count() == 0:
+        #    return render_to_response('results.html', { 'results': results, 'query': q})
       #  results = results.distinct()
         return render_to_response('results.html', { 'results': results, 'query': q})
         
