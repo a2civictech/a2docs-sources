@@ -34,13 +34,13 @@ def add(request):
         if entry_form.is_valid() and file_formset.is_valid():
             entry = entry_form.save(commit=False)
             entry.poster_slug = slugify(entry.poster)
+            entry.slug = slugify(entry.title)
+            
             '''
             The name of the entity has has been sent 
             as a string. We need to use an actual  
             entity object.
             '''
-            
-            # How do we sanitize this input?
             entity_name = request.POST['entries-govt_entity']
             try:
                 entity = Entity.objects.get(name=entity_name)
