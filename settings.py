@@ -8,7 +8,12 @@ import os
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
+EMAIL_HOST = 'mail.oneissue.org'
+EMAIL_HOST_USER = 'a2docs-errors@oneissue.org'
+EMAIL_PORT = 26
+
 ADMINS = (
+    ('Matt Hampel', 'a2docs-errors@oneissue.org')
     # ('Your Name', 'your_email@domain.com'),
 )
 MANAGERS = ADMINS

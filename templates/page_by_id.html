@@ -45,7 +45,10 @@
 	<ul>
 	{% for f in files %}
 		
-		<li><a href="/assets/{{f.file.theFile}}">{{f.file.name}}</a> {{f.file.size}} (<a href="/doc/{{e.id}}/view/{{f.file.id}}">view online</a>)</li>
+		<li><a href="/assets/{{f.file.theFile}}">{{f.file.name}}</a> {{f.file.size}} 
+			{% if f.file.scribd-link %}
+				(<a href="/doc/{{e.id}}/view/{{f.file.id}}">view online</a>)</li>
+			{% endif %}
 	{% endfor %}
 	</ul>
 	
