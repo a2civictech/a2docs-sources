@@ -229,10 +229,12 @@ def search(request):
         if scribd_docs:
             for doc in scribd_docs:
                 scribd_id = str(doc._get_id())
-                f = File.objects.get(scribd_id = scribd_id)
-                more_results = Entry.objects.filter(id=f.entry.id, show=True)
-            
-                results = list(results) + list(more_results)
+                try:
+                    f = File.objects.get(scribd_id = scribd_id)
+                    more_results = Entry.objects.filter(id=f.entry.id, show=True)
+                    results = list(results) + list(more_results)
+                except: 
+                    pass # la-ame!
         
         
         #if results.count() == 0:
