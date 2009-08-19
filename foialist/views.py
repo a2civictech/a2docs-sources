@@ -19,17 +19,20 @@ from itertools import chain
 
 def add(request):
     context = {}
+    
     entry_form = EntryForm(prefix='entries')
     file_forms_excludes = ('entry', 'scribd_link', 'scribd_ak', 'size', 
                            'scribd_id', 'name')
     FileFormSetFactory = modelformset_factory(File, form=FileForm, extra=8,
                                         exclude=file_forms_excludes,)
-    file_formset = FileFormSetFactory(prefix='files')
+    file_formset = FileFormSetFactory(prefix='files', queryset=File.objects.none())
+    print file_formset.initial
     
     if request.method == 'POST':
         entry_form = EntryForm(request.POST, request.FILES, prefix='entries')
         file_formset = FileFormSetFactory(request.POST, request.FILES, 
-                                          prefix='files')
+                                          prefix='files', queryset=File.objects.none())
+                                         
     
         if entry_form.is_valid() and file_formset.is_valid():
             entry = entry_form.save(commit=False)
@@ -60,14 +63,7 @@ def add(request):
                                        settings.SCRIBD_PASS)
             
             for f in file_formset.save(commit=False):
-                '''
-                This is a HORRIBLE HACK for the file ID
-                but necessary untill @bkerr gets back or I figure this out
-                Otherwise things get overwritten.
-                '''
-                count = File.objects.all().count()
-                f.id = count + 2
-                
+             
                 f.name = f.theFile.name.split("/")[-1]
                 f.size = convert_bytes(f.theFile.size)
                 f.entry = entry
@@ -83,7 +79,7 @@ def add(request):
                     f.scribd_ak = scribd_doc.access_key
                 except scribd.ResponseError:
                     pass # TODO handle this in a more reasonable way
-
+              
                 f.save()
             
             return HttpResponseRedirect('/doc/' + str(entry.id)) 
