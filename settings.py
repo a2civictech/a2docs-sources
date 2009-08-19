@@ -13,8 +13,8 @@ EMAIL_HOST_USER = 'a2docs-errors@oneissue.org'
 EMAIL_PORT = 26
 
 ADMINS = (
-    ('Matt Hampel', 'a2docs-errors@oneissue.org')
-    # ('Your Name', 'your_email@domain.com'),
+    ('Matt Hampel', 'a2docs-errors@oneissue.org'),
+    ('Brian Kerr', 'brian@joechip.net'),
 )
 MANAGERS = ADMINS
 
