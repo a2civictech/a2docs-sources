@@ -236,7 +236,7 @@ def search(request):
         
         #if results.count() == 0:
         #    return render_to_response('results.html', { 'results': results, 'query': q})
-      #  results = results.distinct()
+        results = list(set(results))
         return render_to_response('results.html', { 'results': results, 'query': q})
         
     else:
