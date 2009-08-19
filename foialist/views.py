@@ -233,6 +233,7 @@ def search(request):
             
                 results.append(more_results)
         
+        
         if results.count() == 0:
             return render_to_response('results.html', { 'results': results, 'query': q})
       #  results = results.distinct()
