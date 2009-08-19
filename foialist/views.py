@@ -65,8 +65,6 @@ def add(request):
                 but necessary untill @bkerr gets back or I figure this out
                 Otherwise things get overwritten.
                 '''
-                count = File.objects.all().count()
-                f.id = count + 1 
                 
                 f.name = f.theFile.name.split("/")[-1]
                 f.size = convert_bytes(f.theFile.size)
