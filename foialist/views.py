@@ -231,7 +231,7 @@ def search(request):
                 f = File.objects.get(scribd_id = scribd_id)
                 more_results = Entry.objects.get(id=f.entry.id)
             
-                results.append(more_results)
+                results = results | more_results
         
         
         if results.count() == 0:
