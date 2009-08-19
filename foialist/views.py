@@ -225,7 +225,6 @@ def search(request):
                                    settings.SCRIBD_PASS)
                         
         scribd_docs = scribd.find(query=q, scope="user")
-        print scribd_docs
         if scribd_docs:
             for doc in scribd_docs:
                 scribd_id = str(doc._get_id())
