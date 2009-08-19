@@ -65,6 +65,8 @@ def add(request):
                 but necessary untill @bkerr gets back or I figure this out
                 Otherwise things get overwritten.
                 '''
+                count = File.objects.all().count()
+                f.id = count + 1   
                 
                 f.name = f.theFile.name.split("/")[-1]
                 f.size = convert_bytes(f.theFile.size)
@@ -80,7 +82,7 @@ def add(request):
                     f.scribd_link = scribd_doc.get_scribd_url()
                     f.scribd_ak = scribd_doc.access_key
                 except scribd.ResponseError:
-                    pass # TODO handle this in some reasonable way
+                    pass # TODO handle this in a more reasonable way
 
                 f.save()
             
