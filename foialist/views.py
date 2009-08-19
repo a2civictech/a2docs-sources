@@ -60,6 +60,14 @@ def add(request):
                                        settings.SCRIBD_PASS)
             
             for f in file_formset.save(commit=False):
+                '''
+                This is a HORRIBLE HACK for the file ID
+                but necessary untill @bkerr gets back or I figure this out
+                Otherwise things get overwritten.
+                '''
+                count = File.objects.all().count()
+                f.id = count + 1 
+                
                 f.name = f.theFile.name.split("/")[-1]
                 f.size = convert_bytes(f.theFile.size)
                 f.entry = entry
