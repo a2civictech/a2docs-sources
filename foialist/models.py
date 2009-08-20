@@ -55,7 +55,7 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
         
     def get_absolute_url(self):
-        return "/id/%i/" % self.slug
+        return "/doc/%i/" % self.slug
     
     def __unicode__(self):
         return self.title
