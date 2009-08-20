@@ -55,20 +55,20 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
         
     def get_absolute_url(self):
-        return "/id/%i/" % self.id
+        return "/id/%i/" % self.slug
     
     def __unicode__(self):
         return self.title
     
     
-class File(models.Model):
-    theFile = models.FileField("File", upload_to='files/%Y/%m/%d')
-    entry = models.ForeignKey(Entry)
-    size = models.CharField(blank=True, max_length=100)
-    name = models.CharField(blank=True, max_length=150)
-    scribd_id = models.CharField(blank=True, max_length=100)
-    scribd_link = models.CharField(blank=True, max_length=256)
-    scribd_ak = models.CharField(blank=True, max_length=256)
+    class File(models.Model):
+        theFile = models.FileField("File", upload_to='files/%Y/%m/%d')
+        entry = models.ForeignKey(Entry)
+        size = models.CharField(blank=True, max_length=100)
+        name = models.CharField(blank=True, max_length=150)
+        scribd_id = models.CharField(blank=True, max_length=100)
+        scribd_link = models.CharField(blank=True, max_length=256)
+        scribd_ak = models.CharField(blank=True, max_length=256)
 
 
 class Comment(models.Model):
