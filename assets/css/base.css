@@ -129,11 +129,12 @@ h1, h2, h3, h4, h5, h6 {
     padding-top:4px;
 }
 td.title, td.date, td.attachments, td.poster {
-    padding-right: 1em;
+    padding-right: 1.5em;
 }
 td.title { 
     padding-left:4px; 
 }
+td.date { width: 100px; }
 tr.even td {
     
 }
