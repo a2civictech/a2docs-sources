@@ -134,7 +134,7 @@ td.title, td.date, td.attachments, td.poster {
 td.title { 
     padding-left:4px; 
 }
-td.date { width: 100px; }
+td.date { width: 80px; }
 tr.even td {
     
 }
