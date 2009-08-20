@@ -61,14 +61,14 @@ class Entry(models.Model):
         return self.title
     
     
-    class File(models.Model):
-        theFile = models.FileField("File", upload_to='files/%Y/%m/%d')
-        entry = models.ForeignKey(Entry)
-        size = models.CharField(blank=True, max_length=100)
-        name = models.CharField(blank=True, max_length=150)
-        scribd_id = models.CharField(blank=True, max_length=100)
-        scribd_link = models.CharField(blank=True, max_length=256)
-        scribd_ak = models.CharField(blank=True, max_length=256)
+class File(models.Model):
+    theFile = models.FileField("File", upload_to='files/%Y/%m/%d')
+    entry = models.ForeignKey(Entry)
+    size = models.CharField(blank=True, max_length=100)
+    name = models.CharField(blank=True, max_length=150)
+    scribd_id = models.CharField(blank=True, max_length=100)
+    scribd_link = models.CharField(blank=True, max_length=256)
+    scribd_ak = models.CharField(blank=True, max_length=256)
 
 
 class Comment(models.Model):
