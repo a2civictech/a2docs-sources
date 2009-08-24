@@ -107,11 +107,7 @@ def home(request):
     # DISPLAY DOCS by ORIGIN
     # ======================
 def origins(request):
-    # takes a source ID
-    # returns all documents from that source.
-
-    entries = Entity.objects.all()
-    
+    entries = Entity.objects.all().order_by('name')
     return render_to_response('entities.html', {'entries': entries, })
     
     

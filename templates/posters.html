@@ -8,7 +8,7 @@
 {{header}}
 
 <ul>		
-		{% for entry in entries %}
+		{% for entry in entries|dictsort:"name" %}
 		<li>
 			<a href="{{ entry.slug }}">
 				{{ entry.name }} 
