@@ -80,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 #container h1 {
     line-height: 1em!important;
     margin-bottom: .25em ;
+    margin-right:260px;
     font-size: 1.5em;
 }
 #container h2, #container h3 { margin-top: .75em; }
@@ -97,14 +98,16 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0px auto;
 }
 #head h1{
+    background: #eee url(/assets/img/ex.png) no-repeat 25px 10px;
+    height:196px;
     font-size: 36px;
     font-weight: normal;
     padding-bottom: 10px;
     padding-left: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 #head h1 a {
-    background: #eee url(/assets/img/ex.png) no-repeat 0px bottom;
+    
     margin-right: 520px;
     padding-left: 230px;
     display: block;
@@ -160,7 +163,7 @@ tr.odd td {
     font-size: .9em;
     border-top: 1px solid #fff;
 }
-#narrative p { margin-right:334px; }
+#narrative p, #narrative  { margin-right:334px; }
 
 
 /* submission page */
