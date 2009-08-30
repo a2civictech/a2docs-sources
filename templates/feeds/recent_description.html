@@ -1,1 +1,3 @@
-{{ obj.narrative }}
+{% load markup %}
+
+{{ obj.narrative|markdown }}
