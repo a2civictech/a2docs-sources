@@ -1,4 +1,7 @@
 from foialist.models import *
+from foialist.views import *
+from django.conf import settings
+import math
 
 def entities():
     '''
@@ -42,3 +45,14 @@ def fake_slug(string):
     string = string.replace(" ", "_")
     string = string.replace("/", "-")
     return string
+    
+def pages():
+    count = float(Entry.objects.all().count())
+    real_num_pages = count / settings.ITEMS_PER_PAGE
+    
+    # because we cannot have a fraction of a page
+    # and rounding down would loose us pages
+    num_pages = int(math.ceil(real_num_pages)) 
+    l = range(1, num_pages + 1)
+    
+    return l

@@ -15,6 +15,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     ('^$', home),
+    (r'^page/(?P<page_number>\d+)/$', page),
+    
     ('^add/$', add),
 
     # ('^file/$', f),

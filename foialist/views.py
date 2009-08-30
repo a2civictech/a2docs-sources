@@ -16,7 +16,6 @@ from scribd import *
 import scribd
 from itertools import chain
 
-
 def add(request):
     context = {}
     
@@ -101,9 +100,29 @@ def count_files(entries):
 def home(request):
     entries = Entry.objects.filter(show=True)
     counts = count_files(entries)
-    return render_to_response('home.html', {'entries': entries, 'counts': counts})
-
     
+    page_l = pages()
+
+    return render_to_response('home.html', {'entries': entries, 'counts': counts, 'page_l': page_l})
+
+def page(requst, page_number):
+    try:
+        page_number = int(page_number)
+    except:
+        return render_to_response('404.html', { 'message' : 'That is not a valid page number.'})
+        
+    offset_bot = (page_number - 1) * settings.ITEMS_PER_PAGE
+    offset_top = offset_bot + settings.ITEMS_PER_PAGE
+    
+    page_l = pages()    
+    
+    entries = Entry.objects.filter(show=True).order_by('-date_posted')[offset_bot:offset_top]   
+    
+    return render_to_response('home.html', {'entries': entries, 'page_number': page_number, 'page_l': page_l})
+    
+    
+
+
     # DISPLAY DOCS by ORIGIN
     # ======================
 def origins(request):

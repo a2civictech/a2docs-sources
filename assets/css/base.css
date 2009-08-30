@@ -141,7 +141,7 @@ td.date { width: 80px; }
 tr.even td {
     
 }
-tr.odd td {
+tr.odd td, .odd {
     background:#fafafa;
 }
 
