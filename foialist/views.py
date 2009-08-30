@@ -98,12 +98,13 @@ def count_files(entries):
     # HOMEPAGE
     # ======================
 def home(request):
-    entries = Entry.objects.filter(show=True)
+    entries = Entry.objects.filter(show=True)[0:9]
     counts = count_files(entries)
     
     page_l = pages()
+    page_number = 1
 
-    return render_to_response('home.html', {'entries': entries, 'counts': counts, 'page_l': page_l})
+    return render_to_response('home.html', {'entries': entries, 'counts': counts, 'page_l': page_l, 'page_number': page_number,})
 
 def page(requst, page_number):
     try:

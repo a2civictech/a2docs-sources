@@ -7,6 +7,7 @@
 
 {{header}}
 
+{% ifequal page_number 1 %}
 
 <h1>Find documents</h1>
 
@@ -14,17 +15,22 @@
 	<input  class="input" type="text" name="q" id="q" value="{{entries|first}}" onclick="this.value=''"/>
 	<input type="submit" value="Search" />
 </form>
+{% endifequal %}
 
-<h1>Recent documents <a class="rsslink" href="/feeds/recent"><img src="/assets/img/feed-icon-14x14.png" alt="RSS" /></a></h1>
+<h1>Recent documents
+		{% ifnotequal page_number 1 %}
+			&mdash; page {{ page_number }}
+			{% else %}
+		{% endifnotequal %}
+	<a class="rsslink" href="/feeds/recent"><img src="/assets/img/feed-icon-14x14.png" alt="RSS" /></a>
+</h1>
 
 <table class="rlist" cellspacing="0">
 	<thead>
 		<tr>
-			<th>Recent documents</th>
+			<th></th>
 			<th>Added</th>
-			<th>From</th>
-			<th>By</th>
-			
+			<th>From</th>		
 		</tr>
 	</thead>
 	
@@ -35,7 +41,7 @@
 			<td class="title"><a href="/doc/{{ entry.id }}">{{ entry.title }}</a></td>
 			<td class="date">{{ entry.date_posted|timesince|truncatewords:2|cut:", ..."}} ago</td>
 			<td class="entity"><a href="/origin/{{entry.entity.slug}}">{{ entry.entity.name }}</td>
-			<td class="poster"><a href="/submitter/{{entry.poster_slug}}">{{ entry.poster }}</a></td>
+			<!--<td class="poster"><a href="/submitter/{{entry.poster_slug}}">{{ entry.poster }}</a></td>-->
 		</tr>
 		{% endfor %}
 	</tbody>
@@ -43,7 +49,7 @@
 
 <div class="pages">Page:
 {% for n in page_l %}
-	<a href="/page/{{n}}">{{n}}</a>
+	<a href="/page/{{n}}" {% ifequal page_number n %}class="selected"{% endifequal %}>{{n}}</a>
 {% endfor %}
 </div>
 

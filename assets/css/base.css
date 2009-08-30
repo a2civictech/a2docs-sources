@@ -302,3 +302,7 @@ label {
     background-color: #ffe;
     color: black;
 }
+
+.pages { margin-top:1em; }
+    .pages a { padding:5px; background:#eee; border-left:1px solid white;}
+    .pages a.selected { background:white; color:black; }
