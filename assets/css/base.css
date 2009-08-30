@@ -163,7 +163,7 @@ tr.odd td, .odd {
     font-size: .9em;
     border-top: 1px solid #fff;
 }
-#narrative p, #narrative  { margin-right:334px; }
+#narrative p { margin-right:334px; }
 
 
 /* submission page */
