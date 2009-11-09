@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.forms.models import modelformset_factory
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context
 from django.template.loader import get_template
 from django.template.defaultfilters import slugify
@@ -214,9 +214,9 @@ def scribd_view(request, eid, did):
     did = file ID
     eid = entry id 
     '''
-    f = File.objects.get(id=did)
+    f = get_object_or_404(File, id=did)
     
-    entry = Entry.objects.get(id=eid)
+    entry = get_object_or_404(Entry, id=eid)
     files = File.objects.filter(entry=entry)
     
     return render_to_response('scribd_view.html', {
