@@ -10,10 +10,10 @@
 <ul>		
 		{% for entry in entries|dictsort:"name" %}
 		<li>
-			<a href="{{ entry.slug }}">
-				{{ entry.name }} 
-				<span>({{ entry.count }})</span>
-			</a>
+			<a href="{{ entry.slug }}">{{ entry.name }}</a>
+      {% ifnotequal entry.count "1" %}
+        ({{ entry.count }})
+      {% endifnotequal %}
 		</li>
 		{% endfor %}
 

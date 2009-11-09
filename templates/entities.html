@@ -10,9 +10,10 @@
 <ul>		
 		{% for entry in entries %}
 		<li>
-			<a href="/origin/{{ entry.slug }}">
-				{{ entry.name }} 
-			</a>
+			<a href="/origin/{{ entry.slug }}">{{ entry.name }}</a> 
+			  {% ifnotequal entry.entry_set.count 1 %}
+			   ({{entry.entry_set.count}})
+			  {% endifnotequal %}
 		</li>
 		{% endfor %}
 
