@@ -135,7 +135,7 @@ def by_origin(request, slug):
     # takes a source ID
     # returns all documents from that source.
     
-    entity = Entity.objects.get(slug=slug)
+    entity = get_object_or_404(Entity, slug=slug)
     entries = Entry.objects.filter(show=True, entity=entity)
     origin = entity.name
     
