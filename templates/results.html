@@ -23,7 +23,7 @@
 	<thead>
 		<tr>
 			<th>Recent documents</th>
-			<th>Added</th>
+			<th style="width: 10em;">Added</th>
 			<th>From</th>
 			<th>By</th>
 			
@@ -33,7 +33,7 @@
 	<tbody>
 	
 		{% for entry in results %}
-		<tr>
+		<tr class="{% cycle 'odd' 'even' %}">		
 			<td class="title"><a href="/doc/{{ entry.id }}">{{ entry.title }}</a></td>
 			<td class="date">{{ entry.date_posted|date:"F j, Y" }}</td>
 			<td class="entity"><a href="/origin/{{entry.entity.slug}}">{{ entry.entity.name }}</td>
