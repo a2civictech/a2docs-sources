@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load hash %}
 
-{% block title %}Documents from {{origin}}{% endblock %}
+{% block title %}Documents matching: {{query|escape}}{% endblock %}
 
 {% block content %}
 
