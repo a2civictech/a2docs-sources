@@ -19,7 +19,7 @@
 		{% endfor %}
 		<a id="add-another">add another file</a><br />
 		
-		<p id="more-than-ten">If you have large files (more than 50MB per file) or large collections of files (more than 10), this upload form may not work for you. Please contact us directly at <a href="mailto:info@arborwiki.org">info@arborwiki.org</a>, and we will work with you to coordinate a batch upload.</p>
+		<p id="more-than-eight">If you have large files (more than 50MB per file) or large collections of files (more than 8), this upload form may not work for you. Please contact us directly at <a href="mailto:info@arborwiki.org">info@arborwiki.org</a>, and we will work with you to coordinate a batch upload.</p>
 		
 		<input type="submit" value="Submit" onclick="this.value = 'Now submitting...'; this.readOnly = true" />
 	</form>
@@ -45,7 +45,7 @@
 	var num_forms = 16; // the number of file forms total. 
 	
 	$(document).ready(function() {
-		jQuery("#more-than-ten").hide();
+		jQuery("#more-than-eight").hide();
 
 		for(hide_i = i; hide_i <= num_forms; hide_i++) {
 			id_to_hide = "#" + prefix + hide_i + suffix;
@@ -62,7 +62,7 @@
 			//   'email large collections to ...' )
 			if(i == 10){
 				jQuery("#add-another").hide();
-				jQuery("#more-than-ten").show();
+				jQuery("#more-than-eight").show();
 			}		
    		});
  	});
