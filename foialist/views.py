@@ -98,7 +98,7 @@ def count_files(entries):
     # HOMEPAGE
     # ======================
 def home(request):
-    entries = Entry.objects.filter(show=True)[0:9]
+    entries = Entry.objects.filter(show=True)[0:10]
     counts = count_files(entries)
     
     page_l = pages()
