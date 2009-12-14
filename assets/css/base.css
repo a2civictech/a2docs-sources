@@ -121,6 +121,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 #head h1 span {
     font-size: 15px;
+    margin-left: 2px;
+}
+
+#head p {
+    margin-left: 40px;
+    color: #666;
 }
 
 /* homepage list */
