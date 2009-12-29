@@ -39,7 +39,7 @@
 		<tr class="{% cycle 'odd' 'even' %}">
 			<td class="title"><a href="/doc/{{ entry.id }}">{{ entry.title }}</a></td>
 			<td class="date">{{ entry.date_posted|timesince|truncatewords:2|cut:", ..."}} ago</td>
-			<td class="entity"><a href="/origin/{{entry.entity.slug}}">{{ entry.entity.name }}</td>
+			<td class="entity"><a href="/origin/{{entry.entity.slug}}">{{ entry.entity.name }}</a></td>
 			<!--<td class="poster"><a href="/submitter/{{entry.poster_slug}}">{{ entry.poster }}</a></td>-->
 		</tr>
 		{% endfor %}

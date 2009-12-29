@@ -11,10 +11,10 @@
 			{% block css %}{% endblock %}
 		</style>
 		
-		<script src="/assets/js/jquery-1.3.2.min.js"></script>
-		<script src="/assets/js/jquery-ui-1.7.2.custom.min.js"></script>
-		<script src="/assets/js/jquery.autogrow.js"></script>
-		<script src="/assets/js/jquery.autocomplete.js"></script>
+		<script src="/assets/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+		<script src="/assets/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
+		<script src="/assets/js/jquery.autogrow.js" type="text/javascript"></script>
+		<script src="/assets/js/jquery.autocomplete.js" type="text/javascript"></script>
 		
 		
 		<script type="text/javascript">
@@ -22,7 +22,6 @@
 				{% block jquery %}
 				{% endblock %}
             });
-            	
 		</script>
 		
 		{% block head %}
@@ -37,13 +36,13 @@
 			<ul id="nav">
 				{% block nav-home %}<li id="home"><a href="/">Recent documents</a></li>{% endblock %}
 
-				{% block nav-add %}<li><a href="/add" class="selected">Submit a document</a></li>{% endblock %}
+				{% block nav-add %}<li id="nav-submit"><a href="/add" class="selected">Submit a document</a></li>{% endblock %}
 			
-				{% block nav-browse-submitter %}<li><a href="/submitter" class="selected">Browse by submitter</a></li>{% endblock %}
+				{% block nav-browse-submitter %}<li id="nav-submitter"><a href="/submitter" class="selected">Browse by submitter</a></li>{% endblock %}
 			
-				{% block nav-browse-origin %}<li><a href="/origin" class="selected">Browse by origin</a></li>{% endblock %}
+				{% block nav-browse-origin %}<li id="nav-origin"><a href="/origin" class="selected">Browse by origin</a></li>{% endblock %}
 			
-				{% block nav-about %}<li><a href="/about">About</a></li>{% endblock %}
+				{% block nav-about %}<li id="nav-about"><a href="/about">About</a></li>{% endblock %}
 
 			</ul>
 		</div>
