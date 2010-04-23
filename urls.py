@@ -15,22 +15,25 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     ('^$', home),
-    (r'^page/(?P<page_number>\d+)/$', page),
+    # for pagination of collections of documents:
+    (r'^page/(?P<page_number>\d+)/$', page), 
     
+    # upload a document
     ('^add/$', add),
-
-    # ('^file/$', f),
     
+    # browse collections of documents
     (r'^doc/(\d+)/$', page_by_id),
+    # and individual documents in a collection (uses scribd API)
     (r'^doc/(?P<eid>\d+)/view/(?P<did>\d+)/$', scribd_view),
         
- #  (r'^created/$', by_creation_date),
- #  (r'^submitted/$', by_submission_date),
-        
+    # list originating organizations
     (r'^origin/$', origins),
+    # browse by originitating organiztion (ex. City of Ann Arbor)
     (r'^origin/(?P<slug>[-\w]+)/$', by_origin),
     
+    # list all people who have submitted collections:
     (r'^submitter/$', posters),
+    # view collections from a specific person:
     (r'^submitter/(?P<slug>[-\w]+)/$', by_poster),
     
     ('^search/$', search),    

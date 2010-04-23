@@ -255,9 +255,6 @@ def search(request):
                 except: 
                     pass # la-ame!
         
-        
-        #if results.count() == 0:
-        #    return render_to_response('results.html', { 'results': results, 'query': q})
         results = list(set(results))
         return render_to_response('results.html', { 'results': results, 'query': q})
         

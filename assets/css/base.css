@@ -22,7 +22,7 @@ body {
 #page {
     line-height: 1.5;
     width: 920px;
-    margin: 0px auto;
+    margin: 0px auto 20px auto;
     clear: both;
     overflow: hidden;
 }
@@ -208,6 +208,9 @@ form li span {
     margin-bottom: 5px;
     width: 460px;
     font-size: 1.2em;
+}
+.entity-quicklinks {
+    cursor:pointer;
 }
 
 textarea {

@@ -66,6 +66,10 @@
 			}		
    		});
  	});
+
+	$('.entity-quicklinks').click(function() {
+		$("#id_entries-govt_entity").val(this.text)
+	});
 	
 	
 {% endblock %}

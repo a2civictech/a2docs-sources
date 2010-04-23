@@ -10,7 +10,9 @@ class FileForm(forms.ModelForm):
     
     
 class EntryForm(forms.ModelForm):
-    govt_entity = forms.CharField(label="Gov't. entity")
+    govt_entity = forms.CharField(
+        help_text="<span>eg: <a class='entity-quicklinks'>Ann Arbor City Council</a>, <a class='entity-quicklinks'>City of Ann Arbor</a></span>", 
+        label="Gov't. entity")
     
     class Meta:
         model = Entry
