@@ -2,8 +2,8 @@
 language: python
 sudo: false
 # List the versions of Python you'd like to test against
+# Taking out Python 2.5 because it's apparently not installable
 python:
- - "2.5"
  - "2.6"
  - "2.7"
 # List the versions of Django you'd like to test against
