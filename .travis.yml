@@ -7,7 +7,8 @@ python:
  - "2.6"
  - "2.7"
 # List the versions of Django you'd like to test against
-# We probably need earlier versions too
+# We probably need earlier versions too, since the project
+# was originally built on Django 1.2-BETA
 env:
  - DJANGO_VERSION=1.4.21
  - DJANGO_VERSION=1.7.9
