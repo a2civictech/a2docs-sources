@@ -1,3 +1,7 @@
+# travis config file for a2docs
+#
+# travis-first-try: get django loaded, and test as "true"
+#
 # Tell Travis you want a Python environment to test in
 language: python
 sudo: false
@@ -23,10 +27,8 @@ install:
    # Travis is currently working on
  - pip install -q Django==$DJANGO_VERSION
  - pip install pyflakes pep8 coverage python-coveralls
- - python setup.py install
+ - true
 # Tell Travis how to run the test script itself
 # This should fail until we get some test coverage running
 script:
- - pep8 softhyphen
- - pyflakes softhyphen
- - coverage run setup.py test
+ - true
