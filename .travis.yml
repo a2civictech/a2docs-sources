@@ -34,4 +34,4 @@ install:
 # Tell Travis how to run the test script itself
 # This should fail until we get some test coverage running
 script:
- - true
+ - python -c "import django; print(django.get_version())"
