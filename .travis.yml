@@ -7,15 +7,17 @@ language: python
 sudo: false
 # List the versions of Python you'd like to test against
 # Taking out Python 2.5 because it's apparently not installable
+# The latest Django wants to be on the latest Python 3
 python:
  - "2.6"
  - "2.7"
+ - "3.4"
+ - "3.5"
 # List the versions of Django you'd like to test against
 # We probably need earlier versions too, since the project
 # was originally built on Django 1.2.3
 env:
  - DJANGO_VERSION=1.2.3
- - DJANGO_VERSION=1.4.21
  - DJANGO_VERSION=1.7.9
  - DJANGO_VERSION=1.8.3
 matrix:
